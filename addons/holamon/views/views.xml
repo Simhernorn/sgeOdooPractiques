@@ -1,5 +1,4 @@
 <odoo>
-  <!-- Vista lista -->
   <record id="holamon_registro_view_list" model="ir.ui.view">
     <field name="name">holamon.registro.list</field>
     <field name="model">holamon.registro</field>
@@ -13,7 +12,6 @@
     </field>
   </record>
 
-  <!-- Vista formulario -->
   <record id="holamon_registro_view_form" model="ir.ui.view">
     <field name="name">holamon.registro.form</field>
     <field name="model">holamon.registro</field>
@@ -44,14 +42,12 @@
     </field>
   </record>
 
-  <!-- Acción de ventana -->
   <record id="holamon_action_registro" model="ir.actions.act_window">
     <field name="name">Registros</field>
     <field name="res_model">holamon.registro</field>
     <field name="view_mode">list,form</field>
   </record>
 
-  <!-- Menús -->
   <menuitem id="holamon_menu_root" name="Hola Món" sequence="10"/>
   <menuitem id="holamon_menu_registro" name="Registros"
             parent="holamon_menu_root" action="holamon_action_registro"

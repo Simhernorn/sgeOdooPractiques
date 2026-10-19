@@ -3,7 +3,7 @@
     'summary': 'Mi primer módulo en Odoo 19',
     'version': '1.0',
     'category': 'Tools',
-    'author': 'Tu nombre',
+    'author': 'Hugo Lledó',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [
