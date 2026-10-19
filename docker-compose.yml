@@ -16,7 +16,7 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
-    command: --dev=all
+    command: odoo -d provesRemoto -u practica_git_sge --dev=all
     tty: true
 
   db:
