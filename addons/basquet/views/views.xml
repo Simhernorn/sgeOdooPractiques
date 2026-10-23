@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================== PAVELLÓ ===================== -->
+    <record id="view_pavello_list" model="ir.ui.view">
+        <field name="name">basquet.pavello.list</field>
+        <field name="model">basquet.pavello</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="ciutat"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pavello_form" model="ir.ui.view">
+        <field name="name">basquet.pavello.form</field>
+        <field name="model">basquet.pavello</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ciutat"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pavello" model="ir.actions.act_window">
+        <field name="name">Pavellons</field>
+        <field name="res_model">basquet.pavello</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ===================== EQUIP ===================== -->
+    <record id="view_equip_list" model="ir.ui.view">
+        <field name="name">basquet.equip.list</field>
+        <field name="model">basquet.equip</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="ciutat"/>
+                <field name="estadi_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_equip_form" model="ir.ui.view">
+        <field name="name">basquet.equip.form</field>
+        <field name="model">basquet.equip</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ciutat"/>
+                            <field name="estadi_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Jugadors">
+                            <field name="jugador_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="es_capita"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Equips agermanats">
+                            <field name="equips_agermanats_ids"/>
+                        </page>
+                        <page string="Equips rivals">
+                            <field name="equips_rivals_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_equip" model="ir.actions.act_window">
+        <field name="name">Equips</field>
+        <field name="res_model">basquet.equip</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ===================== JUGADOR ===================== -->
+    <record id="view_jugador_list" model="ir.ui.view">
+        <field name="name">basquet.jugador.list</field>
+        <field name="model">basquet.jugador</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="equip_id"/>
+                <field name="estadi_nom"/>
+                <field name="es_capita"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_jugador_form" model="ir.ui.view">
+        <field name="name">basquet.jugador.form</field>
+        <field name="model">basquet.jugador</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="equip_id"/>
+                        <field name="estadi_nom"/>
+                        <field name="es_capita"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jugador" model="ir.actions.act_window">
+        <field name="name">Jugadors</field>
+        <field name="res_model">basquet.jugador</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ===================== MENÚS ===================== -->
+    <menuitem id="menu_basquet_root" name="Lliga de Bàsquet" sequence="10"/>
+    <menuitem id="menu_basquet_equip" name="Equips" parent="menu_basquet_root"
+              action="action_equip" sequence="10"/>
+    <menuitem id="menu_basquet_jugador" name="Jugadors" parent="menu_basquet_root"
+              action="action_jugador" sequence="20"/>
+    <menuitem id="menu_basquet_pavello" name="Pavellons" parent="menu_basquet_root"
+              action="action_pavello" sequence="30"/>
+
+</odoo>
