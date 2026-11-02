@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="etiqueta_nominal" model="venda_entrades_segures.etiqueta">
+            <field name="name">Nominal</field>
+            <field name="color">2</field>
+        </record>
+        <record id="etiqueta_no_reemborsable" model="venda_entrades_segures.etiqueta">
+            <field name="name">No Reemborsable</field>
+            <field name="color">1</field>
+        </record>
+    </data>
+</odoo>
