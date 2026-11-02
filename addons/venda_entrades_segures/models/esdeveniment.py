@@ -9,7 +9,7 @@ class Esdeveniment(models.Model):
     name = fields.Char(string='Nom', required=True)
     preu_base = fields.Float(string='Preu base', required=True)
     # Necessari per calcular data_limit_acces al tiquet
-    data_inici = fields.Datetime(string="Data d'inici", required=True)
+    data_inici = fields.Datetime(string="Data d'inici")
 
     tiquet_ids = fields.One2many(
         'venda_entrades_segures.tiquet',
