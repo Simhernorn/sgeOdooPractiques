@@ -14,7 +14,9 @@ informació es calcula automàticament per evitar manipulacions.
     'data': [
         'security/ir.model.access.csv',
         'data/etiqueta_data.xml',
-        'views/views.xml',
+        'views/esdeveniment_views.xml',
+        'views/tiquet_views.xml',
+        'views/menus.xml',
     ],
     'application': True,
     'installable': True,

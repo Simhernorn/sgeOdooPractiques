@@ -8,30 +8,6 @@ from odoo.tools import html_escape
 TAXA_GESTIO = 0.10
 
 
-class Esdeveniment(models.Model):
-    _name = 'venda_entrades_segures.esdeveniment'
-    _description = 'Esdeveniment (concert o espectacle)'
-
-    name = fields.Char(string='Nom', required=True)
-    preu_base = fields.Float(string='Preu base', required=True)
-    # Necessari per calcular data_limit_acces al tiquet
-    data_inici = fields.Datetime(string="Data d'inici", required=True)
-
-    tiquet_ids = fields.One2many(
-        'venda_entrades_segures.tiquet',
-        'esdeveniment_id',
-        string='Tiquets',
-    )
-
-
-class Etiqueta(models.Model):
-    _name = 'venda_entrades_segures.etiqueta'
-    _description = 'Etiqueta de tiquet'
-
-    name = fields.Char(string='Nom', required=True)
-    color = fields.Integer(string='Color')
-
-
 class Tiquet(models.Model):
     _name = 'venda_entrades_segures.tiquet'
     _description = 'Tiquet (entrada nominal anti-revenda)'

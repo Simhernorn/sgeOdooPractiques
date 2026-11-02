@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_root" name="Entrades Segures" sequence="10"/>
+    <menuitem id="menu_tiquet" name="Tiquets" parent="menu_root" action="tiquet_action" sequence="10"/>
+    <menuitem id="menu_esdeveniment" name="Esdeveniments" parent="menu_root" action="esdeveniment_action" sequence="20"/>
+    <menuitem id="menu_etiqueta" name="Etiquetes" parent="menu_root" action="etiqueta_action" sequence="30"/>
+</odoo>
