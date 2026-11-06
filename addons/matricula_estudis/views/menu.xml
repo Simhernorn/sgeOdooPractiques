@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="menu_matricula_root" name="Matrícula"/>
+    <menuitem id="menu_matricula_inscripcio" name="Inscripcions"
+              parent="menu_matricula_root" action="action_matricula_inscripcio" sequence="10"/>
+    <menuitem id="menu_matricula_curs" name="Cursos"
+              parent="menu_matricula_root" action="action_matricula_curs" sequence="20"/>
+    <menuitem id="menu_matricula_alumne" name="Alumnes"
+              parent="menu_matricula_root" action="action_matricula_alumne" sequence="30"/>
+</odoo>

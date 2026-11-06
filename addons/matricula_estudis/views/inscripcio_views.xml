@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_matricula_inscripcio_list" model="ir.ui.view">
+        <field name="name">matricula.inscripcio.list</field>
+        <field name="model">matricula.inscripcio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="curs_id"/>
+                <field name="alumne_id"/>
+                <field name="data_inscripcio"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_matricula_inscripcio_form" model="ir.ui.view">
+        <field name="name">matricula.inscripcio.form</field>
+        <field name="model">matricula.inscripcio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <!-- El curs va primer: el filtre depèn d'ell -->
+                        <field name="curs_id"/>
+                        <field name="alumne_elegible_ids" invisible="1"/>
+                        <field name="alumne_id"
+                               domain="[('id', 'in', alumne_elegible_ids)]"/>
+                        <field name="data_inscripcio"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_matricula_inscripcio" model="ir.actions.act_window">
+        <field name="name">Inscripcions</field>
+        <field name="res_model">matricula.inscripcio</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
