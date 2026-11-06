@@ -75,9 +75,8 @@ class Tiquet(models.Model):
     def _compute_codi_seguretat(self):
         for record in self:
             if record.comprador_id and record.esdeveniment_id:
-                nom = (record.comprador_id.name or '').upper().replace(' ', '')
                 record.codi_seguretat = '%s-ID-%s' % (
-                    nom, record.esdeveniment_id.id)
+                    record.comprador_id.name, record.esdeveniment_id.id)
             else:
                 record.codi_seguretat = False
 
