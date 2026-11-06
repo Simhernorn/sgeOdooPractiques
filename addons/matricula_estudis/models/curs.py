@@ -19,11 +19,10 @@ class MatriculaCurs(models.Model):
     places_lliures = fields.Integer(
         string='Places lliures', compute='_compute_places', store=False)
 
-    _sql_constraints = [
-        ('capacitat_maxima_positiva',
-         'CHECK(capacitat_maxima > 0)',
-         'La capacitat màxima del curs ha de ser superior a zero.'),
-    ]
+    _capacitat_maxima_positiva = models.Constraint(
+        'CHECK(capacitat_maxima > 0)',
+        'La capacitat màxima del curs ha de ser superior a zero.',
+    )
 
     @api.depends('capacitat_maxima', 'inscripcio_ids')
     def _compute_places(self):
