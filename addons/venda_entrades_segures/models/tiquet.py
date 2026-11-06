@@ -32,10 +32,9 @@ class Tiquet(models.Model):
     # Camps
     # ------------------------------------------------------------------
     comprador_id = fields.Many2one(
-        'res.partner', string='Comprador', required=True)
+    'res.partner', string='Comprador')
     esdeveniment_id = fields.Many2one(
-        'venda_entrades_segures.esdeveniment', string='Esdeveniment',
-        required=True)
+    'venda_entrades_segures.esdeveniment', string='Esdeveniment')
 
     preu_final = fields.Float(
         string='Preu final (+10 % gestió)',
