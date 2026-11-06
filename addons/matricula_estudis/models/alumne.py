@@ -12,11 +12,11 @@ class MatriculaAlumne(models.Model):
     inscripcio_ids = fields.One2many(
         'matricula.inscripcio', 'alumne_id', string='Inscripcions')
 
-    _nif_unic = models.Constraint(
-        'UNIQUE(nif)',
-        'Ja existeix un alumne amb aquest NIF.',
-    )
-    _edat_positiva = models.Constraint(
-        'CHECK(edat > 0)',
-        "L'edat de l'alumne ha de ser un número positiu.",
-    )
+    _sql_constraints = [
+        ('nif_unic',
+         'UNIQUE(nif)',
+         'Ja existeix un alumne amb aquest NIF.'),
+        ('edat_positiva',
+         'CHECK(edat > 0)',
+         "L'edat de l'alumne ha de ser un número positiu."),
+    ]
