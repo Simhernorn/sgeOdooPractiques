@@ -24,6 +24,7 @@
                     <field name="foto_comprador" widget="image" class="oe_avatar"/>
                     <group>
                         <group string="Dades de l'entrada">
+                            <field name="name"/>
                             <field name="comprador_id"/>
                             <field name="esdeveniment_id"/>
                             <field name="etiquetes_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>

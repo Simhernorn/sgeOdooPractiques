@@ -31,6 +31,8 @@ class Tiquet(models.Model):
     # ------------------------------------------------------------------
     # Camps
     # ------------------------------------------------------------------
+    name = fields.Char(string='Nom')
+
     comprador_id = fields.Many2one(
     'res.partner', string='Comprador')
     esdeveniment_id = fields.Many2one(
@@ -131,7 +133,8 @@ class Tiquet(models.Model):
     # ------------------------------------------------------------------
     # Nom a mostrar
     # ------------------------------------------------------------------
-    @api.depends('codi_seguretat')
+    @api.depends('name', 'codi_seguretat')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = record.codi_seguretat or _('Nou tiquet')
+            record.display_name = (
+                record.name or record.codi_seguretat or _('Nou tiquet'))
