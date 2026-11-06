@@ -6,7 +6,7 @@
 Pràctica de fields computed: entrades nominals on la majoria de la
 informació es calcula automàticament per evitar manipulacions.
     """,
-    'author': "Simher",
+    'author': "Hugo",
     'category': 'Tools',
     'version': '1.0',
     'license': 'LGPL-3',
