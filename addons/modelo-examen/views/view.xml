@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ LISTA (en Odoo 18+ es list, antes tree) ============ -->
+    <record id="proyecto_view_list" model="ir.ui.view">
+        <field name="name">modelo_examen.proyecto.list</field>
+        <field name="model">modelo_examen.proyecto</field>
+        <field name="arch" type="xml">
+            <!-- decoration-success/danger/warning/info/muted colorea la fila según una condición -->
+            <list decoration-success="state == 'hecho'" decoration-muted="not activo">
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <field name="miembro_ids" widget="many2many_tags"/>
+                <field name="cantidad"/>
+                <field name="precio"/>
+                <field name="total" sum="Total"/>   <!-- sum: suma de la columna al pie -->
+                <field name="num_hijos"/>
+                <field name="state" widget="badge"/>
+                <field name="activo" column_invisible="True"/>   <!-- cargado pero sin columna -->
+            </list>
+        </field>
+    </record>
+
+    <!-- ============ FORMULARIO ============ -->
+    <record id="proyecto_view_form" model="ir.ui.view">
+        <field name="name">modelo_examen.proyecto.form</field>
+        <field name="model">modelo_examen.proyecto</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- type="object": llama al método Python con ese name. invisible: se oculta si es True -->
+                    <button name="action_iniciar" string="Iniciar" type="object" class="oe_highlight"
+                            invisible="state != 'borrador'"/>
+                    <button name="action_terminar" string="Terminar" type="object" class="oe_highlight"
+                            invisible="state != 'curso'"/>
+                    <button name="action_borrador" string="Volver a borrador" type="object"
+                            invisible="state == 'borrador'" confirm="¿Seguro?"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <!-- Smart button: botón con contador arriba a la derecha -->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-sitemap" disabled="1">
+                            <field name="num_hijos" widget="statinfo" string="Subproyectos"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Nombre..."/></h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="cliente_id" options="{'no_create': True}"/>
+                            <field name="cliente_email"/>
+                            <field name="padre_id"/>
+                            <field name="activo"/>
+                        </group>
+                        <group>
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_fin" required="state == 'curso'"/>   <!-- required condicional -->
+                            <field name="cantidad" readonly="state == 'hecho'"/>    <!-- readonly condicional -->
+                            <field name="precio" readonly="state == 'hecho'"/>
+                            <field name="total"/>
+                            <field name="total_hijos" invisible="num_hijos == 0"/>  <!-- invisible condicional -->
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Subproyectos">
+                            <!-- One2many: la list interna sustituye a la vista por defecto; editable="bottom" edita en línea -->
+                            <field name="hijo_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="precio"/>
+                                    <field name="cantidad"/>
+                                    <field name="total"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Equipo">
+                            <!-- Many2many como etiquetas. Sin widget se vería como lista -->
+                            <field name="miembro_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Descripción">
+                            <field name="descripcion"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============ BÚSQUEDA ============ -->
+    <record id="proyecto_view_search" model="ir.ui.view">
+        <field name="name">modelo_examen.proyecto.search</field>
+        <field name="model">modelo_examen.proyecto</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Campos por los que se busca al escribir -->
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <!-- Filtros: dominio fijo (en XML: &gt; es >, &lt; es <) -->
+                <filter name="f_curso" string="En curso" domain="[('state', '=', 'curso')]"/>
+                <filter name="f_caros" string="Precio &gt; 100" domain="[('precio', '&gt;', 100)]"/>
+                <separator/>
+                <!-- Agrupaciones -->
+                <filter name="g_estado" string="Estado" context="{'group_by': 'state'}"/>
+                <filter name="g_cliente" string="Cliente" context="{'group_by': 'cliente_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============ ACCIÓN Y MENÚS ============ -->
+    <record id="proyecto_action" model="ir.actions.act_window">
+        <field name="name">Proyectos</field>
+        <field name="res_model">modelo_examen.proyecto</field>
+        <field name="view_mode">list,form</field>
+        <!-- search_default_NOMBREFILTRO: 1 activa ese filtro al abrir -->
+        <field name="context">{'search_default_f_curso': 1}</field>
+    </record>
+
+    <!-- Sin parent = menú raíz. Con parent y sin action = carpeta. Con action = abre la vista -->
+    <menuitem id="menu_raiz" name="Modelo Examen" sequence="10"/>
+    <menuitem id="menu_proyectos" name="Proyectos" parent="menu_raiz" action="proyecto_action" sequence="10"/>
+
+</odoo>

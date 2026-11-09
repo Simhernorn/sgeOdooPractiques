@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_modelo-examen_modelo-examen,modelo-examen.modelo-examen,model_modelo-examen_modelo-examen,base.group_user,1,1,1,1
+
+# IMPORTANTE
+# Borrad los comentarios cuando ya hayais creado todos los ficheros y los hayais conectado aqui, os podrian dar problemas ya que csv como tal no admite comentarios.
+
+# No toqueis la linea 'id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink'
+
+# Cada linea tendra una estructura de parametros:
+# id: identificador unico de la linea (siempre empieza por 'access_', seguido del nombre del modelo separado por un _ en vez de un punto. Por ejemplo 'access_modelo-examen_modelo-examen')
+# name: nombre del modelo dado en su fichero .py como parametro _name (e.j. 'modelo-examen.modelo-examen')
+# model_id:id: nombre del modelo dado en su fichero .py como parametro _name precedido de 'model_' (e.j. 'model_modelo-examen_modelo-examen')
+# group_id:id: nombre del grupo de usuarios al que se le asigna el permiso precedido de 'base.group_' (e.j. 'base.group_user'). Por lo general siempre se va a quedar como base.group_user, ya que asi se le asigna a todos los usuarios del sistema.
+# Los siguientes parametros por lo general se quedan como 1 siempre.
+# perm_read: 1 si se le da permiso de lectura, 0 si no
+# perm_write: 1 si se le da permiso de escritura, 0 si no
+# perm_create: 1 si se le da permiso de creacion, 0 si no
+# perm_unlink: 1 si se le da permiso de borrado, 0 si no
