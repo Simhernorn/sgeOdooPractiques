@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_modelo-examen_modelo-examen,modelo-examen.modelo-examen,model_modelo-examen_modelo-examen,base.group_user,1,1,1,1
+access_modelo_examen_proyecto,access_modelo_examen_proyecto,model_modelo_examen_proyecto,base.group_user,1,1,1,1
 
 # IMPORTANTE
 # Borrad los comentarios cuando ya hayais creado todos los ficheros y los hayais conectado aqui, os podrian dar problemas ya que csv como tal no admite comentarios.
